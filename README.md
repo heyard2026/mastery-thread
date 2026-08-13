@@ -1,67 +1,130 @@
 # MasteryThread
 
-**Keep the thread. Prove the mastery.**  
-让学习不断线，让掌握有证据。
+<p align="center">
+  <img src="skill/mastery-thread/assets/icon.svg" width="84" alt="MasteryThread icon" />
+</p>
 
-MasteryThread 是一套“Skill + 本地学习工作台”的证据驱动学习系统。它不把看过课程、完成打卡或自我感觉良好当作掌握；它要求学习者先表现，再诊断、干预、变式验证，并把结果写入可携带的学习状态。
+<h3 align="center">Keep the thread. Prove the mastery.</h3>
 
-## 为什么做它
+<p align="center">
+  Most learning tools track what you consumed. MasteryThread tracks what you can prove.
+</p>
 
-多数学习工具擅长安排内容，却很难回答三个关键问题：
+<p align="center">
+  <a href="https://mastery-thread.heyard2025.chatgpt.site">Product preview</a>
+  ·
+  <a href="packages/mastery-thread-skill.zip">Download the Skill</a>
+  ·
+  <a href="README.zh-CN.md">简体中文</a>
+</p>
 
-- 我究竟会到了什么程度？
-- 这次成功是独立完成，还是提示造成的？
-- 中断几天后，应该从哪里继续？
+![MasteryThread product dashboard](media/social-preview.png)
 
-MasteryThread 用 L0–L4 掌握等级、可观察证据、薄弱点关闭条件、适应性复习和精确恢复状态来回答这些问题。
+> **Beta note:** the hosted preview currently requires a ChatGPT sign-in. The Skill and the local workspace are open source and can be used independently.
 
-## 核心能力
+## Why MasteryThread
 
-- 从目标、使用情境和真实起点生成第一版学习路线
-- 运行“检索 → 观察 → 最小干预 → 变式验证 → 记录”教练闭环
-- 区分回忆、解释、独立应用和迁移证据
-- 记录提示强度，避免把被答案带出来的表现误判为掌握
-- 维护薄弱点、关闭条件和复习队列
-- 使用版本化 `learning-state.json` 在 Skill 与前端之间交接
-- 在设备本地保存数据，并支持 JSON 导入导出
-- 在移动端提供专用底部导航
+AI tutors are good at explaining. They are much less reliable at answering three questions:
 
-## 产品结构
+- What can the learner actually do without help?
+- Did a successful answer come from mastery or from a strong hint?
+- After an interruption, where should the learner resume?
 
-```text
-mastery-thread/
-├── skill/mastery-thread/   # 自适应教练逻辑、状态脚本、证据规则
-└── web-app/                # 本地状态、能力档案、复习队列和交互演示
-```
+MasteryThread treats learning as a persistent evidence system. It asks the learner to perform first, applies the smallest useful intervention, verifies again with a changed task, and records only the level supported by observable evidence.
 
-Skill 负责领域题目生成、诊断、来源核验和掌握判定；前端负责项目状态、证据账本、薄弱点和复习队列。前端中的 SQL 流程是透明的确定性演示，不冒充已接入的云端大模型。
+## See the workflow
 
-## 快速开始
-
-### 使用 Skill
-
-将 `skill/mastery-thread` 安装为 ChatGPT/Codex Skill，然后可以这样开始：
+![MasteryThread product tour](media/product-tour.gif)
 
 ```text
-使用 MasteryThread 帮我建立一个“独立完成用户访谈”的学习项目。
-先诊断我的真实起点，不要直接给完整课程表。
+Retrieve → Observe → Intervene → Verify → Record → Schedule
 ```
 
-Skill 会创建或更新 `learning-state.json`。把更新后的文件导入前端，即可同步证据、等级、薄弱点和复习时间。
+The Skill makes the coaching decisions. The local workspace keeps the portable learning state, evidence ledger, weaknesses, and review queue visible.
 
-### 运行本地工作台
+## What makes it different
 
-需要 Node.js 22.13 或更高版本。
+| Typical learning tracker | MasteryThread |
+|---|---|
+| Counts lessons, streaks, or time | Records observable performance evidence |
+| Treats a correct answer as mastery | Discounts answers produced with strong hints |
+| Resumes from the last page | Resumes from the last verified capability |
+| Stores progress inside one chat | Uses a portable, versioned `learning-state.json` |
+| Schedules generic repetition | Prioritizes overdue prerequisites and open weaknesses |
+
+## Three ways to use it
+
+### 1. Prepare for an exam or interview
+
+Turn a syllabus or role description into a dependency-aware route. Diagnose the real baseline, verify recall and application separately, and schedule reviews from observed performance.
+
+### 2. Build a practical skill
+
+Learn SQL, user interviewing, data analysis, writing, or another applied skill through authentic tasks. A unit reaches L3 only when the learner can complete a representative task independently.
+
+### 3. Resume a long learning project
+
+Import the previous `learning-state.json`. MasteryThread restores the last confirmed capability, unresolved weakness, due reviews, and exact next action instead of reconstructing the project from chat history.
+
+## Quick start
+
+### Option A — install from the packaged Skill
+
+1. Download [`mastery-thread-skill.zip`](packages/mastery-thread-skill.zip).
+2. Attach it in ChatGPT or Codex and ask: `Install this Skill.`
+3. Start with:
+
+```text
+Use MasteryThread to help me build a learning project for conducting
+independent user interviews. Diagnose my real baseline before making the plan.
+```
+
+### Option B — install from source in Codex
 
 ```bash
-cd web-app
+git clone https://github.com/heyard2026/mastery-thread.git
+mkdir -p ~/.codex/skills
+cp -R mastery-thread/skill/mastery-thread ~/.codex/skills/mastery-thread
+```
+
+### Option C — run the local workspace
+
+Requires Node.js 22.13 or later.
+
+```bash
+git clone https://github.com/heyard2026/mastery-thread.git
+cd mastery-thread/web-app
 npm ci
 npm run dev -- --host 0.0.0.0
 ```
 
-打开终端显示的本地地址。所有学习数据默认只保存在当前浏览器设备中。
+Learning data stays in the current browser by default. Import and export use the same canonical `learning-state.json` handled by the Skill.
 
-### 运行检查
+## Mastery levels
+
+| Level | Meaning | Minimum acceptable evidence |
+|---|---|---|
+| L0 | No evidence yet | No usable performance |
+| L1 | Recall | Retrieve facts, steps, or syntax without a critical hint |
+| L2 | Explain | Explain relationships and boundaries in the learner's own words |
+| L3 | Apply | Complete and verify a representative task independently |
+| L4 | Transfer | Adapt, justify, and handle exceptions in a materially different context |
+
+`worked-step` or `solution` hints cannot independently support L3 or L4. Time spent, confidence, and lesson completion are context—not proof of competence.
+
+## Repository structure
+
+```text
+mastery-thread/
+├── skill/mastery-thread/        # Coaching logic, evidence rules, state scripts
+├── web-app/                     # Device-local learning workspace
+├── media/                       # Product and launch visuals
+└── packages/                    # Downloadable Skill package
+```
+
+The SQL flow in the frontend is an explicit deterministic demonstration. It does not pretend to be cloud model coaching. Domain-specific diagnosis, task generation, source grounding, and mastery decisions belong to the Skill.
+
+## Validate the project
 
 ```bash
 cd skill/mastery-thread
@@ -72,34 +135,26 @@ npm run lint
 npm run build
 ```
 
-## 掌握等级
+## Privacy and state integrity
 
-| 等级 | 含义 | 最低证据 |
-|---|---|---|
-| L0 | 尚无证据 | 没有可用表现 |
-| L1 | 能回忆 | 无关键提示提取事实、步骤或语法 |
-| L2 | 能解释 | 用自己的话说明关系与边界，并处理反例 |
-| L3 | 能应用 | 独立完成代表性任务并验证结果 |
-| L4 | 能迁移 | 在实质不同的情境中适应、辩护并处理例外 |
+- No account is required for the local workspace.
+- Imported learning files are not sent to third-party services by the frontend.
+- State uses semantic versions and preserves unknown fields during updates.
+- The system stores concise performance, error, and verification summaries—not hidden chain-of-thought.
 
-`worked-step` 或 `solution` 级提示不能独立支持 L3/L4。学习时长、打开次数和自信程度只能作为背景，不能替代表现证据。
+## Independent design
 
-## 数据与隐私
+MasteryThread was designed from first principles around persistent learning state and verifiable mastery. Its state contract, mastery rubric, diagnostic loop, visual language, and frontend interactions are original work. It is not a fork, reskin, or code copy of another learning Skill.
 
-- 前端不需要账户，状态保存在浏览器本地。
-- 导入文件不会上传到第三方服务。
-- 状态采用语义化版本；更新时保留未知字段。
-- 不记录隐藏思维过程，只保存简洁的表现、错误和验证摘要。
+## Current boundaries
 
-## 独立设计说明
+- General-domain adaptive diagnosis runs through the MasteryThread Skill.
+- The frontend is device-local and does not yet provide cloud sync or collaboration.
+- The hosted product preview may require ChatGPT sign-in; the source and local workspace do not.
 
-MasteryThread 围绕“持续学习状态 + 可验证掌握”从零设计了自己的状态契约、掌握量表、诊断闭环、视觉语言和前端交互。它不是任何现有学习 Skill 的复制、换皮或代码分叉。
+## Contributing
 
-## 当前边界
-
-- 通用领域的自适应诊断需要在 MasteryThread Skill 中运行。
-- 前端目前使用设备本地状态，不提供云同步或多人协作。
-- SQL 演示用于展示证据闭环，不是完整 SQL 课程。
+Early feedback is especially valuable around mastery decisions, interruption recovery, schema portability, and real learning workflows. Open an issue with the learning goal, what happened, and what you expected.
 
 ## License
 
