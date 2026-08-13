@@ -20,7 +20,7 @@
 
 ![MasteryThread product dashboard](media/social-preview.png)
 
-> **Beta note:** the hosted preview currently requires a ChatGPT sign-in. The Skill and the local workspace are open source and can be used independently.
+> **Public demo:** the hosted preview is open to everyone—no sign-in required. The Skill and local workspace are also open source and can be used independently.
 
 ## Why MasteryThread
 
@@ -150,7 +150,7 @@ MasteryThread was designed from first principles around persistent learning stat
 
 - General-domain adaptive diagnosis runs through the MasteryThread Skill.
 - The frontend is device-local and does not yet provide cloud sync or collaboration.
-- The hosted product preview may require ChatGPT sign-in; the source and local workspace do not.
+- The hosted product preview is public and requires no sign-in; the source and local workspace can also be used independently.
 
 ## Contributing
 
