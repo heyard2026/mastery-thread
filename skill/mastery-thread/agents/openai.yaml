@@ -1,0 +1,14 @@
+interface:
+  display_name: MasteryThread
+  short_description: Track mastery, weak spots, and smart reviews
+  default_prompt: Use $mastery-thread to build a learning plan that tracks what I
+    can actually apply.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

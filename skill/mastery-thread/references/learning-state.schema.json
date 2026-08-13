@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://masterythread.dev/schema/learning-state-1.0.0.json",
+  "title": "MasteryThread learning state",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "learner",
+    "roadmap",
+    "mastery",
+    "weaknesses",
+    "evidence",
+    "reviews",
+    "sessions",
+    "sources",
+    "resume",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "project": {
+      "type": "object",
+      "required": ["id", "title", "goal", "route_type", "target_level", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^prj_"},
+        "title": {"type": "string", "minLength": 1},
+        "goal": {"type": "string", "minLength": 1},
+        "route_type": {"enum": ["knowledge", "practical-skill", "professional-research", "exam-certification"]},
+        "target_level": {"type": "integer", "minimum": 1, "maximum": 4},
+        "status": {"enum": ["active", "paused", "completed", "archived"]}
+      },
+      "additionalProperties": true
+    },
+    "learner": {"type": "object"},
+    "roadmap": {
+      "type": "object",
+      "required": ["phases", "units"],
+      "properties": {
+        "phases": {"type": "array"},
+        "units": {"type": "array"}
+      },
+      "additionalProperties": true
+    },
+    "mastery": {"type": "object"},
+    "weaknesses": {"type": "array"},
+    "evidence": {"type": "array"},
+    "reviews": {"type": "array"},
+    "sessions": {"type": "array"},
+    "sources": {"type": "array"},
+    "resume": {
+      "type": "object",
+      "required": ["last_unit_id", "open_weakness_ids", "next_action", "context_summary"]
+    },
+    "updated_at": {"type": "string"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "project": {
+    "id": "",
+    "title": "",
+    "goal": "",
+    "route_type": "knowledge",
+    "target_level": 2,
+    "created_at": "",
+    "start_date": "",
+    "deadline": null,
+    "minutes_per_session": 30,
+    "status": "active"
+  },
+  "learner": {
+    "baseline_summary": "",
+    "preferences": [],
+    "constraints": []
+  },
+  "roadmap": {
+    "phases": [],
+    "units": []
+  },
+  "mastery": {},
+  "weaknesses": [],
+  "evidence": [],
+  "reviews": [],
+  "sessions": [],
+  "sources": [],
+  "resume": {
+    "last_unit_id": null,
+    "last_confirmed_capability": "",
+    "open_weakness_ids": [],
+    "next_action": "Complete the baseline diagnostic.",
+    "context_summary": "Project created; baseline evidence is still required."
+  },
+  "updated_at": ""
+}
