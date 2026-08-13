@@ -15,6 +15,8 @@
   ·
   <a href="packages/mastery-thread-skill.zip">Download the Skill</a>
   ·
+  <a href="https://github.com/heyard2026/mastery-thread/issues/1">Join the first 20 learners</a>
+  ·
   <a href="README.zh-CN.md">简体中文</a>
 </p>
 
