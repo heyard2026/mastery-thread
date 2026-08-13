@@ -1,0 +1,51 @@
+name: Learning experience feedback / 学习体验反馈
+description: Share what you tried, what MasteryThread detected, and what should improve.
+title: "[Learning feedback] "
+labels:
+  - feedback
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve MasteryThread. Please do not include private, confidential, or identifying information.
+
+        感谢你帮助改进 MasteryThread。请勿提交隐私、机密或可识别个人身份的信息。
+  - type: input
+    id: goal
+    attributes:
+      label: Learning goal / 学习目标
+      description: What were you trying to learn or prepare for?
+      placeholder: e.g. SQL interview preparation / 例如：准备 SQL 面试
+    validations:
+      required: true
+  - type: dropdown
+    id: path
+    attributes:
+      label: How did you use MasteryThread? / 使用方式
+      options:
+        - Hosted product preview / 在线演示
+        - Packaged Skill / Skill 安装包
+        - Local workspace / 本地工作台
+        - Source code / 源码
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: What happened? / 实际体验
+      description: Describe the task, diagnosis, feedback, or review flow you tried.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Did the mastery judgment feel accurate? / 掌握判断是否准确
+      description: Tell us what felt right or wrong and why.
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: One improvement that matters most / 最希望改进的一点
+    validations:
+      required: true
